@@ -1,6 +1,5 @@
 ﻿using DesignamolnlosningarLab1.Data;
 using DesignamolnlosningarLab1.Data.Entities;
-using DesignamolnlosningarLab1.Services;
 
 namespace DesignamolnlosningarLab1.Endoints
 {
@@ -58,18 +57,18 @@ namespace DesignamolnlosningarLab1.Endoints
                 return Results.Ok();
             });
 
-            app.MapPost("/api/upload", async (IFormFile file, BlobService blobService) =>
-            {
-                try
-                {
-                    var url = await blobService.UploadFileAsync(file);
-                    return Results.Ok(url);
-                }
-                catch (Exception ex)
-                {
-                    return Results.Problem(ex.ToString());
-                }
-            });
+            /* app.MapPost("/api/upload", async (IFormFile file, BlobService blobService) =>
+             {
+                 try
+                 {
+                     var url = await blobService.UploadFileAsync(file);
+                     return Results.Ok(url);
+                 }
+                 catch (Exception ex)
+                 {
+                     return Results.Problem(ex.ToString());
+                 }
+             });*/
 
             return app;
         }
