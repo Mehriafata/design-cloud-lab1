@@ -33,13 +33,14 @@ namespace DesignamolnlosningarLab1
 
 
             app.MapProductEndpoints();
+            app.MapGet("/", () => Results.Redirect("/swagger"));
 
-            //automatic migration
+            /*automatic migration
             using (var scope = app.Services.CreateScope())
             {
                 var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
                 db.Database.Migrate();
-            }
+            }*/
 
             app.Run();
         }
