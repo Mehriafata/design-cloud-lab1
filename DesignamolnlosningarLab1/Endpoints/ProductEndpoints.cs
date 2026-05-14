@@ -61,7 +61,8 @@ namespace DesignamolnlosningarLab1.Endoints
 
             app.MapPost("/api/upload", async ([FromForm] IFormFile file, BlobService blobService) =>
              {
-
+                 if (file == null || file.Length == 0)
+                     return Results.BadRequest("No file uploaded");
 
                  var url = await blobService.UploadFileAsync(file);
                  return Results.Ok(url);
