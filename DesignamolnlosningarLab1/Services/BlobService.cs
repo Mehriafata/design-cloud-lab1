@@ -14,6 +14,8 @@ namespace DesignamolnlosningarLab1.Services
             var blobServicesClinet = new BlobServiceClient(connectionString);
             _container = blobServicesClinet.GetBlobContainerClient(containerName);
 
+            _container.CreateIfNotExists();
+
         }
 
         public async Task<string> UploadFileAsync(IFormFile file)
