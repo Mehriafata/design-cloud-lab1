@@ -62,7 +62,9 @@ namespace DesignamolnlosningarLab1.Endoints
              {
                  try
                  {
+                     Console.WriteLine("Upload started");
                      var url = await blobService.UploadFileAsync(file);
+                     Console.WriteLine("Upload completed");
                      return Results.Ok(url);
                  }
                  catch (Exception ex)
