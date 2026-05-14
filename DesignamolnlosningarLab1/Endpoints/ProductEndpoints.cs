@@ -67,7 +67,7 @@ namespace DesignamolnlosningarLab1.Endoints
                  }
                  catch (Exception ex)
                  {
-                     return Results.Problem(ex.ToString());
+                     return Results.Problem(ex.Message);
                  }
              });
 
