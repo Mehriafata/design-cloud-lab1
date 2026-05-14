@@ -60,7 +60,7 @@ namespace DesignamolnlosningarLab1.Endoints
 
             app.MapPost("/api/upload", async (IFormFile file, BlobService blobService) =>
             {
-                var url = await blobService.uploadFileAsync(file);
+                var url = await blobService.UploadFileAsync(file);
                 return Results.Ok(url);
             });
 

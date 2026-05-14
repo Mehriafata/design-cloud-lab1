@@ -1,5 +1,4 @@
 ﻿using Azure.Storage.Blobs;
-
 namespace DesignamolnlosningarLab1.Services
 {
     public class BlobService
@@ -17,7 +16,7 @@ namespace DesignamolnlosningarLab1.Services
 
         }
 
-        public async Task<string> uploadFileAsync(IFormFile file)
+        public async Task<string> UploadFileAsync(IFormFile file)
         {
             var blobClient = _container.GetBlobClient(file.FileName);
 
