@@ -1,6 +1,7 @@
 using Azure.Identity;
 using DesignamolnlosningarLab1.Data;
 using DesignamolnlosningarLab1.Endoints;
+using DesignamolnlosningarLab1.Services;
 using Microsoft.EntityFrameworkCore;
 namespace DesignamolnlosningarLab1
 {
@@ -17,9 +18,7 @@ namespace DesignamolnlosningarLab1
 
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-            // builder.Services.AddProblemDetails();
-            // builder.Services.AddDbContext<AppDbContext>(options =>
-            // options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            builder.Services.AddScoped<BlobService>();
 
             builder.Services.AddDbContext<AppDbContext>(options =>
            options.UseSqlServer(
@@ -27,7 +26,7 @@ namespace DesignamolnlosningarLab1
 
             var app = builder.Build();
 
-            //app.UseExceptionHandler();
+
 
             app.UseHttpsRedirection();
 
@@ -40,12 +39,7 @@ namespace DesignamolnlosningarLab1
             app.MapProductEndpoints();
             app.MapGet("/", () => Results.Redirect("/swagger"));
 
-            /*automatic migration
-            using (var scope = app.Services.CreateScope())
-            {
-                var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-                db.Database.Migrate();
-            }*/
+
 
             app.Run();
         }

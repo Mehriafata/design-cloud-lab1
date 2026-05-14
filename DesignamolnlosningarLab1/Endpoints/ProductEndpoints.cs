@@ -1,5 +1,6 @@
 ﻿using DesignamolnlosningarLab1.Data;
 using DesignamolnlosningarLab1.Data.Entities;
+using DesignamolnlosningarLab1.Services;
 
 namespace DesignamolnlosningarLab1.Endoints
 {
@@ -55,6 +56,12 @@ namespace DesignamolnlosningarLab1.Endoints
                 db.SaveChanges();
 
                 return Results.Ok();
+            });
+
+            app.MapPost("/api/upload", async (IFormFile file, BlobService blobService) =>
+            {
+                var url = await blobService.uploadFileAsync(file);
+                return Results.Ok(url);
             });
 
             return app;
