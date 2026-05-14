@@ -1,7 +1,7 @@
+using Azure.Identity;
 using DesignamolnlosningarLab1.Data;
 using DesignamolnlosningarLab1.Endoints;
 using Microsoft.EntityFrameworkCore;
-
 namespace DesignamolnlosningarLab1
 {
     public class Program
@@ -9,6 +9,11 @@ namespace DesignamolnlosningarLab1
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            var keyVaultName = "mf-lab1-kv-786";
+            var keyVaultUri = new Uri($"https://{keyVaultName}.vault.azure.net/");
+
+            builder.Configuration.AddAzureKeyVault(
+                keyVaultUri, new DefaultAzureCredential());
 
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
