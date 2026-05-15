@@ -1,7 +1,5 @@
 ﻿using DesignamolnlosningarLab1.Data;
 using DesignamolnlosningarLab1.Data.Entities;
-using DesignamolnlosningarLab1.Services;
-using Microsoft.AspNetCore.Mvc;
 
 namespace DesignamolnlosningarLab1.Endoints
 {
@@ -59,7 +57,7 @@ namespace DesignamolnlosningarLab1.Endoints
                 return Results.Ok();
             });
 
-            app.MapPost("/api/upload", async ([FromForm] IFormFile file, BlobService blobService) =>
+            /*app.MapPost("/api/upload", async ([FromForm] IFormFile file, BlobService blobService) =>
              {
                  if (file == null || file.Length == 0)
                      return Results.BadRequest("No file uploaded");
@@ -67,7 +65,7 @@ namespace DesignamolnlosningarLab1.Endoints
                  var url = await blobService.UploadFileAsync(file);
                  return Results.Ok(url);
 
-             });
+             });*/
 
             return app;
         }
