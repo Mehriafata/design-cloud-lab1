@@ -52,4 +52,4 @@ jobs:
           app-name: 'mf-lab1-api-786'
           slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_91AFE714C1004B4DAF36C36E9BECAF6D }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2622CA594E3E4C74B83A6C26BE849577 }}
