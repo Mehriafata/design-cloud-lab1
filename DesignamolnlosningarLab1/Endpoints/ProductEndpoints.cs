@@ -1,7 +1,7 @@
 ﻿using DesignamolnlosningarLab1.Data;
 using DesignamolnlosningarLab1.Data.Entities;
 using DesignamolnlosningarLab1.Services;
-
+using Microsoft.AspNetCore.Mvc;
 namespace DesignamolnlosningarLab1.Endoints
 {
     public static class ProductEndpoints
@@ -58,18 +58,24 @@ namespace DesignamolnlosningarLab1.Endoints
                 return Results.Ok();
             });
 
-            app.MapPost("/api/upload", async (HttpRequest request, BlobService blobService) =>
+            app.MapPost("/api/upload", async ([FromForm] IFormFile file, BlobService blobService) =>
              {
-                 var form = await request.ReadFormAsync();
-                 var file = form.Files[0];
 
                  if (file == null || file.Length == 0)
                      return Results.BadRequest("No file uploaded.");
 
                  var url = await blobService.UploadFileAsync(file);
-                 return Results.Ok(url);
+                 return Results.Ok(new
+                 {
+                     message = "File uploaded successfully",
+                     url = url
+                 });
 
-             });
+             })
+                .DisableAntiforgery()
+                .Accepts<IFormFile>("multipart/form-data")
+                .Produces(StatusCodes.Status200OK)
+                .Produces(StatusCodes.Status400BadRequest);
 
             return app;
         }
