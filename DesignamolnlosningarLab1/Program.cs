@@ -18,8 +18,9 @@ namespace DesignamolnlosningarLab1
 
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddControllers();
             builder.Services.AddScoped<BlobService>();
-            builder.Services.AddAntiforgery();
+
 
             builder.Services.AddDbContext<AppDbContext>(options =>
            options.UseSqlServer(
@@ -30,13 +31,13 @@ namespace DesignamolnlosningarLab1
 
 
             app.UseHttpsRedirection();
-            app.UseAntiforgery();
+
 
             app.UseSwagger();
             app.UseSwaggerUI();
 
 
-
+            app.MapControllers();
             app.MapProductEndpoints();
             app.MapGet("/", () => Results.Redirect("/swagger"));
 
